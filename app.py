@@ -13,13 +13,14 @@ while True:
     monoColorFrame = cv2.flip(monoColorFrame, 1)
     compressedFrame = lessFrame(monoColorFrame, 5)
     #print(monoColorFrame.shape)
-    #compressedFrame = compressor(monoColorFrame, 5)
+    #compressedFrameAveraged = compressor(monoColorFrame, 5)
     print(compressedFrame)
     cv2.imshow("monoclorImg", monoColorFrame)
     cv2.imshow("CompressedImg", compressedFrame)
-    #cv2.imshow("compressedStream", compressedFrame)
+    #cv2.imshow("compressedStream", compressedFrameAveraged)
     if cv2.waitKey(10) & 0xFF == ord("q"):
         break
 
 stream.release()
 cv2.destroyAllWindows()
+
