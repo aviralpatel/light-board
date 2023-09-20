@@ -16,7 +16,10 @@ while True:
     cv2.imshow("monoclorImg", compressedFrame)
     if len(co_ordinates) > 2:
         print(f"x = {co_ordinates[1]*5} , y = {co_ordinates[0]*5}") #print the co-ordinates
-    if cv2.waitKey(10) & 0xFF == ord("q"):
+        # put further code inside this if statement
+
+
+    if cv2.waitKey(10) & 0xFF == ord("q"): #wait 10ms for keypress
         break
 
 stream.release()
