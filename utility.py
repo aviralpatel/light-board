@@ -1,7 +1,6 @@
 import numpy as np
 import math
 
-
 def matrixAverage(M, order):
     M = np.array(M)
     rval = 0
@@ -11,6 +10,18 @@ def matrixAverage(M, order):
     rval = rval / (order ** 2)
     rval = math.ceil(rval)
     return rval
+
+def maxIndex(lst2d):
+    maxima = 0
+    rparam = []
+    for i in lst2d:
+        if maxima < i[2]:
+            maxima = i[2]
+            rparam = i
+        else:
+            pass
+    return rparam
+
 
 
 def compressor(ImgMatrix, Order):
@@ -50,4 +61,26 @@ def lessFrame(imgMatrix, skipVAl):
         startRow += skipVAl
 
     return outputImg.astype(np.uint8)
+
+
+def brightestSubsetMatrix(img_matrix, order):
+    rows = len(img_matrix)
+    columns = len(img_matrix[0])
+    m = math.floor(rows/order)
+    n = math.floor(columns/order)
+    startRow, startCol = 0, 0
+    holdLst = []
+    for i in range(0, m):
+        startCol = 0
+        for j in range(0, n):
+            M = img_matrix[startRow: startRow + order, startCol: startCol + order]
+            averageVal = matrixAverage(M, order)
+            tempLst = [startRow, startCol, averageVal]
+            holdLst.append(tempLst)
+            startCol += order
+        startRow = startRow + order
+
+    return maxIndex(holdLst)
+
+
 
