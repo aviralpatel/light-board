@@ -1,6 +1,7 @@
 import numpy as np
 import math
 
+#function to get average value of the matrix
 def matrixAverage(M, order):
     M = np.array(M)
     rval = 0
@@ -11,6 +12,7 @@ def matrixAverage(M, order):
     rval = math.ceil(rval)
     return rval
 
+#function to get index of max arg in a 2d python list
 def maxIndex(lst2d):
     maxima = 0
     rparam = []
@@ -23,7 +25,7 @@ def maxIndex(lst2d):
     return rparam
 
 
-
+#function to compress the image by averaging
 def compressor(ImgMatrix, Order):
     ImgMatrix = np.array(ImgMatrix)
     Rows = len(ImgMatrix)
@@ -43,7 +45,7 @@ def compressor(ImgMatrix, Order):
         CompressedImg = CompressedImg.astype(np.uint8)
     return CompressedImg
 
-
+#function to compress the image without averaging (faster than compressor)
 def lessFrame(imgMatrix, skipVAl):
     imgMatrix = np.array(imgMatrix)
     rows = len(imgMatrix)
@@ -62,7 +64,7 @@ def lessFrame(imgMatrix, skipVAl):
 
     return outputImg.astype(np.uint8)
 
-
+#to get the co-ordinates of brightest sub matrix inside image matrix
 def brightestSubsetMatrix(img_matrix, order):
     rows = len(img_matrix)
     columns = len(img_matrix[0])
