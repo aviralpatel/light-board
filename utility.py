@@ -1,5 +1,7 @@
 import numpy as np
 import math
+import matplotlib.pyplot as plt
+
 
 #function to get average value of the matrix
 def matrixAverage(M, order):
@@ -83,6 +85,38 @@ def brightestSubsetMatrix(img_matrix, order):
         startRow = startRow + order
 
     return maxIndex(holdLst)
+
+#plot class
+class Plot:
+    def __init__(self, res):
+        self.xData = []
+        self.yData = []
+        self.xLim = res*1.77777
+        self.yLim = -res
+        self.fig, self.axes = plt.subplots()
+        self.line, = self.axes.plot(self.xData, self.yData)
+        self.axes.set_xlim(0, self.xLim)
+        self.axes.set_ylim(self.yLim, 20)
+        plt.show(block=False)
+
+
+    def rt_plot(self, x, y):
+        self.xData.append(x)
+        self.yData.append(y)
+        if len(self.xData) > 100:
+            self.xData = self.xData[len(self.xData) - 100: len(self.xData)]
+            self.yData = self.yData[len(self.yData) - 100: len(self.yData)]
+        self.line.set_xdata(self.xData)
+        self.line.set_ydata(self.yData)
+        self.fig.canvas.draw()
+        self.fig.canvas.flush_events()
+        plt.pause(0.01)
+
+    def close(self):
+        plt.close(self.fig)
+
+
+
 
 
 

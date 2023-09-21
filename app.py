@@ -1,28 +1,32 @@
 import cv2
-import numpy as np
-from utility import compressor, lessFrame, brightestSubsetMatrix
+from utility import lessFrame, brightestSubsetMatrix, Plot
 
 stream = cv2.VideoCapture(1) #use 0 for default webcam
 
-while True:
-    ret, frame = stream.read()
+plotFig = Plot(1080)
 
-    monoColorFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) #convert to greyscale
-    monoColorFrame = cv2.flip(monoColorFrame, 1) #flip the captured frame
+try:
+    while True:
+        ret, frame = stream.read()
 
-    compressedFrame = lessFrame(monoColorFrame, 5) #compress the frame and reduce the resolution by 25 for faster processing
+        monoColorFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  # convert to greyscale
+        monoColorFrame = cv2.flip(monoColorFrame, 1)  # flip the captured frame
 
-    co_ordinates = brightestSubsetMatrix(compressedFrame, 10) #get co-ordinates
+        compressedFrame = lessFrame(monoColorFrame, 5)  # compress the frame and reduce the resolution by 25 for faster processing
 
-    cv2.imshow("monoclorImg", compressedFrame)
+        co_ordinates = brightestSubsetMatrix(compressedFrame, 10) # get co-ordinates
 
-    if len(co_ordinates) > 2:
-        print(f"x = {co_ordinates[1]*5} , y = {co_ordinates[0]*5}") #print the co-ordinates
-        # put further code inside this if statement
+        cv2.imshow("compressedFrame", compressedFrame)
 
+        if len(co_ordinates) > 2:
+            print(f"x = {co_ordinates[1]*5} , y = {co_ordinates[0]*5}")  # print the co-ordinates
+            # put further code inside this if statement
+            plotFig.rt_plot(co_ordinates[1]*5, co_ordinates[0]*(-5))
 
-    if cv2.waitKey(10) & 0xFF == ord("q"): #wait 10ms for keypress
-        break
+except KeyboardInterrupt:
+    print("exiting program")
 
-stream.release()
-cv2.destroyAllWindows()
+finally:
+    stream.release()
+    cv2.destroyAllWindows()
+    plotFig.close()
