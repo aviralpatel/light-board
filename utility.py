@@ -1,5 +1,8 @@
 import numpy as np
 import math
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
 
 #function to get average value of the matrix
 def matrixAverage(M, order):
@@ -83,6 +86,9 @@ def brightestSubsetMatrix(img_matrix, order):
         startRow = startRow + order
 
     return maxIndex(holdLst)
+
+# definitions for plotting
+
 
 
 

@@ -1,0 +1,17 @@
+
+//plotting
+fig, axes = plt.subplots()
+
+x_data = []
+y_data = []
+
+line, = axes.plot()
+
+line.sey_xlim(a1, b1)
+line.set_ylim(a2, b2)
+
+line.set_xdata(x_data)
+line.set_ydata(y_data)
+
+figure.canvas.draw()
+figure.canvas.flush_events()
