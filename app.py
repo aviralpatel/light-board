@@ -3,7 +3,7 @@ from utility import lessFrame, brightestSubsetMatrix, Plot
 
 stream = cv2.VideoCapture(1) #use 0 for default webcam
 
-plotFig = Plot(1080)
+plotFig = Plot(1080) #resolution of webcam
 
 try:
     while True:
