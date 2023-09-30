@@ -1,7 +1,7 @@
 import cv2
 from utility import lessFrame, brightestSubsetMatrix, Plot
 
-stream = cv2.VideoCapture(1) #use 0 for default webcam
+stream = cv2.VideoCapture(0) #use 0 for default webcam
 
 plotFig = Plot(1080) #resolution of webcam
 
@@ -14,7 +14,7 @@ try:
 
         compressedFrame = lessFrame(monoColorFrame, 5)  # compress the frame and reduce the resolution by 25 for faster processing
 
-        co_ordinates = brightestSubsetMatrix(compressedFrame, 10) # get co-ordinates
+        co_ordinates = brightestSubsetMatrix(compressedFrame, 5)  # get co-ordinates
 
         cv2.imshow("compressedFrame", compressedFrame)
 
