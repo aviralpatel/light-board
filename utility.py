@@ -103,9 +103,9 @@ class Plot:
     def rt_plot(self, x, y):
         self.xData.append(x)
         self.yData.append(y)
-        if len(self.xData) > 150:
-            self.xData = self.xData[len(self.xData) - 100: len(self.xData)]
-            self.yData = self.yData[len(self.yData) - 100: len(self.yData)]
+        if len(self.xData) > 200:
+            self.xData = self.xData[len(self.xData) - 200: len(self.xData)]
+            self.yData = self.yData[len(self.yData) - 200: len(self.yData)]
         self.line.set_xdata(self.xData)
         self.line.set_ydata(self.yData)
         self.fig.canvas.draw()
